@@ -1,0 +1,17 @@
+[project]
+name = "cut-meeting"
+version = "0.1.0"
+description = "A tool to cut meeting recordings from JW Stream into individual videos for each part"
+authors = [
+    {name = "Kevin DeAngeles",email = "kdeangeles@protonmail.com"}
+]
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "ffmpeg-python (>=0.2.0,<0.3.0)"
+]
+
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
