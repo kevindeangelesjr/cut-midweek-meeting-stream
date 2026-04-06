@@ -3,12 +3,13 @@
 # Imports
 import logging
 import os
+import argparse
 from src.cut_meeting import path_exists, delete_old_recordings, get_latest_recording_file, get_part
 
 # Configure logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
-# Variables
+# Variables/defaults
 video_format="mp4"
 purge_recordings = True
 current_user = os.getlogin()
@@ -17,6 +18,16 @@ output_path = recording_path
 
 # Main
 if __name__ == "__main__":
+
+    parser = argparse.ArgumentParser(description="Cut meeting recordings")
+    parser.add_argument("--recording-path", default=recording_path, help="Path to the recording files")
+    parser.add_argument("--output-path", default=output_path, help="Path to the output directory")
+    parser.add_argument("--purge-recordings", action="store_true", default=True, help="Delete old recordings before processing")
+    args = parser.parse_args()
+
+    recording_path = args.recording_path
+    output_path = args.output_path
+    purge_recordings = args.purge_recordings
 
     # Delete all old recordings in the recording path
     if path_exists(recording_path):
