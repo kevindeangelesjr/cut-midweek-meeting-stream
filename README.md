@@ -6,6 +6,7 @@ Tool to cut a midweek meeting recording from JW Stream into individual video par
 
 - Python 3.13+
 - `ffmpeg-python`
+- `PyQt6`
 - `ffmpeg` installed and available on the system `PATH`
 
 ## Installation
@@ -17,10 +18,27 @@ Tool to cut a midweek meeting recording from JW Stream into individual video par
 
 ## Usage
 
-Run the main script:
+### GUI Application
+
+Run the GUI application:
 
 ```sh
-python main.py
+python app.py
+```
+
+The application provides a user interface to:
+
+- select a recording file
+- choose an output directory
+- add parts with names and start/end timestamps
+- cut each part into a separate `mp4` file
+
+### CLI Application
+
+Run the CLI application:
+
+```sh
+python cli.py
 ```
 
 The script will:
@@ -33,12 +51,12 @@ The script will:
 
 ## Project structure
 
-- `main.py` — entry point for the tool
+- `app.py` — PyQt6 GUI application
+- `cli.py` — CLI entry point
 - `src/cut_meeting.py` — helper functions for path/recording discovery and user input
 - `src/MeetingPart.py` — meeting part validation and ffmpeg-based cutting logic
 
 ## Notes
 
-- The default recording path is `c:/Users/<current_user>/JWSTREAM`
-- Output files are saved to the same directory by default
 - Timestamp format must be `hh:mm:ss`
+- Output files are saved to the selected output directory (GUI) or the same directory as the recording (CLI)
